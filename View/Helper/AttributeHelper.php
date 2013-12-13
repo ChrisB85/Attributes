@@ -12,7 +12,7 @@ class AttributeHelper extends AppHelper {
 
 	public function inputs($attributes = null) {
 
-		$inputs = '';
+		$inputs = '';		
 		foreach ($attributes as $attribute) {
 
 			if (!$attribute['AttributeType']['use_option']) {

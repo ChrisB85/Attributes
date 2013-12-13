@@ -48,12 +48,16 @@ class AttributeComponent extends Component {
 	 * Parameters: entity_alias es el alias de la entidad 
 	 */
 
-	public function getTypes($entity_alias = null) {
-
+	public function getTypes($entity_alias = null, $moment = 'create', $attributes = false) {
+		if (!$attributes) {
+			$this->controller->AttributeType->unbindModel(
+				array('hasMany' => array('Attribute'))
+			);
+		}
 		$Typeattributes = $this->controller->AttributeType->find('all', array(
 			'order' => array('ordering' => 'asc'),
 			'fields' => array('AttributeType.*'),
-			'conditions' => array('Entity.alias' => $entity_alias),
+			'conditions' => array('Entity.alias' => $entity_alias, 'AttributeType.moment' => $moment),
 			'recursive' => 1
 			)
 		);
@@ -140,7 +144,7 @@ class AttributeComponent extends Component {
 	 * 
 	 */
 
-	public function getSaved($id = null, $entity_alias = null) {
+	public function getSaved($id = null, $entity_alias = null, $moment = 'create') {
 
 		$this->controller->loadModel('Attributes.Entity');
 
@@ -165,7 +169,7 @@ class AttributeComponent extends Component {
 			);
 
 
-			$attributes = $this->getTypes($entity_alias);
+			$attributes = $this->getTypes($entity_alias, $moment, true);
 			/* --- SET ATTRIBUTS ---- */
 			$attr = array(
 				'AttributeType' => array(),
@@ -173,12 +177,11 @@ class AttributeComponent extends Component {
 			);
 			foreach ($attributes as $attributes_type) {
 				foreach ($attributes_register as $attribute) {
-					if ($attributes_type['AttributeType']['input_type'] == 4) {						
-						$select_option=explode(',',$attribute['Attribute']['value']);
+					if ($attributes_type['AttributeType']['input_type'] == 4) {
+						$select_option = explode(',', $attribute['Attribute']['value']);
 						foreach ($select_option as $key => $value) {
 							$attr['AttributeType'][$attributes_type['AttributeType']['id']][] = $value;
 						}
-						
 					} else {
 						if ($attributes_type['AttributeType']['id'] == $attribute['Attribute']['attribute_type_id']) {
 							if (!isset($attr['AttributeType'][$attributes_type['AttributeType']['id']])) {
