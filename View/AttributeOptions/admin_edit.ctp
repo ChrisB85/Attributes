@@ -1,10 +1,7 @@
-<div class="span3 well">
-	<ul class="nav nav-list">
-		<li class="nav-header"><?php echo __('Actions'); ?></li>		
-		 <li><?php echo $this->Html->link('<i class="icon-th-list"></i>&nbsp;' . __('List Attribute Options'), array('action' => 'index', 'admin' => true), array('escape' => FALSE)); ?></li>
-	</ul>
-</div>
-<div class="span8">
+<div class="cru">
+	<div class="btn-options">
+		<?php echo $this->Html->link('<i class="icon-list icon-white"></i>&nbsp;' . __('Back to List'), array('action' => 'index', 'admin' => true), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>	
+	</div>
 	<?php echo $this->Form->create('AttributeOption'); ?>
 	<fieldset>
 		<legend><?php echo __('Edit Attribute Option'); ?></legend>
@@ -14,5 +11,5 @@
 		echo $this->Form->input('code');
 		?>
 	</fieldset>
-	<?php echo $this->Form->end(array('label' => __('Edit'), 'class' => 'btn btn-primary')); ?>
+	<?php echo $this->Form->end(array('label' => __('Save'), 'class' => 'btn btn-primary')); ?>
 </div>

@@ -1,10 +1,7 @@
-<div class="span3 well">
-	<ul class="nav nav-list">
-		<li class="nav-header"><?php echo __('Actions'); ?></li>		
-		 <li><?php echo $this->Html->link('<i class="icon-th-list"></i>&nbsp;' . __('List Attribute Types'), array('action' => 'index', 'admin' => true), array('escape' => FALSE)); ?></li>
-	</ul>
-</div>
-<div class="span8">
+<div class="cru">
+	<div class="btn-options">
+		<?php echo $this->Html->link('<i class="icon-list icon-white"></i>&nbsp;' . __('Back to List'), array('action' => 'index', 'admin' => true), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>	
+	</div>
 	<?php echo $this->Form->create('AttributeType'); ?>
 	<fieldset>
 		<legend><?php echo __('Add Attribute Type'); ?></legend>
@@ -18,9 +15,9 @@
 		echo $this->Form->input('is_multiple');
 		echo $this->Form->input('is_required');
 		echo $this->Form->input('use_option');
-		echo $this->Form->input('input_type',array('type'=>'select','options'=>array('1'=>'Input text','2'=>'Input select','3'=>'Input radio','4'=>'Input checkbox')));
-		echo $this->Form->input('moment',array('type'=>'select','options'=>array('create'=>__('Created'),'update'=>__('Update'),'both'=>__('Both'))));
+		echo $this->Form->input('input_type', array('type' => 'select', 'options' => array('1' => 'Input text', '2' => 'Input select', '3' => 'Input radio', '4' => 'Input checkbox')));
+		echo $this->Form->input('moment', array('type' => 'select', 'options' => array('create' => __('Created'), 'update' => __('Update'), 'both' => __('Both'))));
 		?>
 	</fieldset>	
-	<?php echo $this->Form->end(array('label' => __('Add'), 'class' => 'btn btn-primary')); ?>
+	<?php echo $this->Form->end(array('label' => __('Save'), 'class' => 'btn btn-primary')); ?>
 </div>
