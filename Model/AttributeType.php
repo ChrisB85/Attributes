@@ -174,5 +174,6 @@ class AttributeType extends AttributesAppModel {
 			'counterQuery' => ''
 		)
 	);
+	
 
 }

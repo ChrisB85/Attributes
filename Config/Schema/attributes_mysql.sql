@@ -92,6 +92,7 @@ attribute_types.is_required,
 attribute_types.is_multiple,
 attribute_types.use_option,
 attribute_types.input_type,
+attribute_types.moment,
 Entity.id AS entity_id,
 Entity.alias AS entity_alias
 FROM attribute_types	

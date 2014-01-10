@@ -83,12 +83,23 @@ class AttributeComponent extends Component {
 					)),
 				);
 			} else {
-				$this->controller->AttributeType->validate[$name] = array(
-					'regexp' => array(
-						'rule' => $rule,
-						'message' => $validated['AttributeType']['message'],
-					),
-				);
+				if ($rule == 'url') {
+					if (!empty($this->controller->request->data['AttributeType'][$name])) {
+						$this->controller->AttributeType->validate[$name] = array(
+							'regexp' => array(
+								'rule' => $rule,
+								'message' => $validated['AttributeType']['message'],
+							),
+						);
+					}
+				} else {
+					$this->controller->AttributeType->validate[$name] = array(
+						'regexp' => array(
+							'rule' => $rule,
+							'message' => $validated['AttributeType']['message'],
+						),
+					);
+				}
 			}
 		}
 		$this->controller->AttributeType->set($request);
@@ -196,6 +207,7 @@ class AttributeComponent extends Component {
 					$attr['AttributeType'][$attributes_type['AttributeType']['id']] = trim($attr['AttributeType'][$attributes_type['AttributeType']['id']], ', ');
 				}
 			}
+
 			return $attr;
 		} else {
 			return 'Entity alias no found';
