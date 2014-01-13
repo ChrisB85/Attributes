@@ -175,10 +175,10 @@ class AttributeComponent extends Component {
 					'Attribute.parent_entityid' => $id,
 					'AttributeType.entity_id' => $id_entity['Entity']['id']
 				),
-				'recursive' => 2,
+				'recursive' => 1,
 				)
 			);
-
+						
 
 			$attributes = $this->getTypes($entity_alias, $moment, true);
 			/* --- SET ATTRIBUTS ---- */
