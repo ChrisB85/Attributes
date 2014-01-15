@@ -54,10 +54,25 @@ class AttributeComponent extends Component {
 				array('hasMany' => array('Attribute'))
 			);
 		}
+		
+		$conditions=array();
+		$conditions['Entity.alias']=$entity_alias;
+		
+		if(is_array($moment)){
+			foreach ($moment as $m){
+				
+				$conditions['OR'][]['AttributeType.moment']= $m;
+			}
+		}else{
+			$conditions['AttributeType.moment']= $moment;
+		}				
+		
+		
+		
 		$Typeattributes = $this->controller->AttributeType->find('all', array(
 			'order' => array('ordering' => 'asc'),
 			'fields' => array('AttributeType.*'),
-			'conditions' => array('Entity.alias' => $entity_alias, 'AttributeType.moment' => $moment),
+			'conditions' => $conditions,
 			'recursive' => 1
 			)
 		);
@@ -178,6 +193,8 @@ class AttributeComponent extends Component {
 				'recursive' => 1,
 				)
 			);
+			
+			
 						
 
 			$attributes = $this->getTypes($entity_alias, $moment, true);
@@ -207,6 +224,8 @@ class AttributeComponent extends Component {
 					$attr['AttributeType'][$attributes_type['AttributeType']['id']] = trim($attr['AttributeType'][$attributes_type['AttributeType']['id']], ', ');
 				}
 			}
+			
+//			pr($attr);
 
 			return $attr;
 		} else {

@@ -6,23 +6,10 @@ class AttributeTypesController extends AttributesAppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-
-		switch ($this->Auth->user('group_id')) {
-			case 1:
-				$this->Auth->allow('*');
-				break;
-			case 2:
-			case 3:
-				$this->Auth->allow('*');
-				break;
-			default:
-				$this->Auth->allow('admin_login');
-				break;
-		}
 	}
 
 	function admin_index() {
-		$this->AttributeType->recursive = 2;							
+		$this->AttributeType->recursive = 2;
 		$this->set('attributeTypes', $this->paginate());
 	}
 
@@ -68,6 +55,21 @@ class AttributeTypesController extends AttributesAppController {
 		}
 		$entities = $this->AttributeType->Entity->find('list');
 		$this->set(compact('entities'));
+	}
+
+	function admin_delete($id = null) {
+		$this->AttributeType->id = $id;
+		if (!$this->AttributeType->exists()) {
+			throw new NotFoundException(__('Invalid AttributeType'), 'flash/warning');
+		}
+		$this->request->onlyAllow('post', 'delete');
+		if ($this->AttributeType->delete()) {
+			$this->Session->setFlash(__('AttributeType deleted.'), 'flash/success');			
+		} else {
+			$this->Session->setFlash(__('AttributeType was not deleted.'), 'flash/error');
+		}
+
+		$this->redirect(array('action' => 'index'));
 	}
 
 }

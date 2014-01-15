@@ -20,6 +20,7 @@
 						<div class="btn-group">						
 							<?php echo $this->Html->link('<i class="icon-pencil"></i>', array('action' => 'edit', $attributeType['AttributeType']['id']), array('escape' => FALSE, 'class' => 'btn')) ?>                            
 							<?php echo $this->Html->link('<i class="icon-eye-open"></i>', array('action' => 'view', $attributeType['AttributeType']['id']), array('escape' => FALSE, 'class' => 'btn')) ?>					
+							<?php echo $this->Form->postLink('<i class="icon-trash icon-white"></i>', array('action' => 'delete', $attributeType['AttributeType']['id'],'admin'=>true), array('class' => 'btn btn-danger', 'escape' => FALSE), __('Are you sure you want to delete # %s?', $attributeType['AttributeType']['code']));	?>
 						</div>
 					</td>
 				</tr>
