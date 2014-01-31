@@ -15,7 +15,7 @@ class AttributeTypesController extends AttributesAppController {
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid attribute type', true));
+			$this->Session->setFlash(__d('attributes','Invalid attribute type', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('attributeType', $this->AttributeType->read(null, $id));
@@ -27,10 +27,10 @@ class AttributeTypesController extends AttributesAppController {
 			$this->AttributeType->create();
 			if ($this->AttributeType->save($this->data)) {
 
-				$this->Session->setFlash(__('The attribute type has been saved'), 'flash/success');
+				$this->Session->setFlash(__d('attributes','The attribute type has been saved'), 'flash/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The attribute type could not be saved. Please, try again.'), 'flash/warning');
+				$this->Session->setFlash(__d('attributes','The attribute type could not be saved. Please, try again.'), 'flash/warning');
 			}
 		}
 		$entities = $this->AttributeType->Entity->find('list');
@@ -39,15 +39,15 @@ class AttributeTypesController extends AttributesAppController {
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid attribute type', true));
+			$this->Session->setFlash(__d('attributes','Invalid attribute type', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->AttributeType->save($this->request->data)) {
-				$this->Session->setFlash(__('The attribute type has been saved'), 'flash/success');
+				$this->Session->setFlash(__d('attributes','The attribute type has been saved'), 'flash/success');
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The attribute type could not be saved. Please, try again.'), 'flash/warning');
+				$this->Session->setFlash(__d('attributes','The attribute type could not be saved. Please, try again.'), 'flash/warning');
 			}
 		} else {
 			$options = array('conditions' => array('AttributeType.' . $this->AttributeType->primaryKey => $id));
@@ -60,13 +60,13 @@ class AttributeTypesController extends AttributesAppController {
 	function admin_delete($id = null) {
 		$this->AttributeType->id = $id;
 		if (!$this->AttributeType->exists()) {
-			throw new NotFoundException(__('Invalid AttributeType'), 'flash/warning');
+			throw new NotFoundException(__d('attributes','Invalid AttributeType'), 'flash/warning');
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->AttributeType->delete()) {
-			$this->Session->setFlash(__('AttributeType deleted.'), 'flash/success');			
+			$this->Session->setFlash(__d('attributes','AttributeType deleted.'), 'flash/success');			
 		} else {
-			$this->Session->setFlash(__('AttributeType was not deleted.'), 'flash/error');
+			$this->Session->setFlash(__d('attributes','AttributeType was not deleted.'), 'flash/error');
 		}
 
 		$this->redirect(array('action' => 'index'));

@@ -2,7 +2,7 @@
 
 class AttributesController extends AttributesAppController {
 
-	var $name = 'Attributes';
+	public $name = 'Attributes';
 
 	public function beforeFilter() {
 		parent::beforeFilter();

@@ -4,7 +4,7 @@
 	</div>
 	<?php echo $this->Form->create('AttributeType'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Attribute Type', true); ?></legend>
+		<legend><?php echo __d('attributes','Edit Attribute Type', true); ?></legend>
 		<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('entity_id');

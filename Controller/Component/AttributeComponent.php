@@ -22,26 +22,6 @@ class AttributeComponent extends Component {
 		$this->controller->loadModel('Attributes.AttributeType');
 	}
 
-//	public function initialize(Controller $controller) {
-//		
-//	}
-//
-//	public function startup($controller) {
-//		
-//	}
-//
-//	public function beforeRender($controller) {
-//		
-//	}
-//
-//	public function shutDown($controller) {
-//		
-//	}
-//
-//	public function beforeRedirect($controller, $url, $status = null, $exit = true) {
-//		
-//	}
-
 	/*
 	 * Developer: William Alarcon
 	 * Description: Función para ser llamada desde toda la aplicación con el fin de obtener el listado de los tipos de atributos

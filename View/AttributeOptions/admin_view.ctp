@@ -1,5 +1,5 @@
 <div class="attributeOptions view">
-<h2><?php echo __('Attribute Option'); ?></h2>
+<h2><?php echo __d('attributes','Attribute Option'); ?></h2>
 	<dl>
 		<dt><?php echo __('Id'); ?></dt>
 		<dd>

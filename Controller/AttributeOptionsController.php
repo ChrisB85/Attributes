@@ -43,7 +43,7 @@ class AttributeOptionsController extends AttributesAppController {
 	 */
 	public function admin_view($id = null) {
 		if (!$this->AttributeOption->exists($id)) {
-			throw new NotFoundException(__('Invalid attribute option'));
+			throw new NotFoundException(__d('attributes','Invalid attribute option'));
 		}
 		$options = array('conditions' => array('AttributeOption.' . $this->AttributeOption->primaryKey => $id));
 		$this->set('attributeOption', $this->AttributeOption->find('first', $options));
@@ -58,10 +58,10 @@ class AttributeOptionsController extends AttributesAppController {
 		if ($this->request->is('post')) {
 			$this->AttributeOption->create();
 			if ($this->AttributeOption->save($this->request->data)) {
-				$this->Session->setFlash(__('The attribute option has been saved.'), 'flash/success');
+				$this->Session->setFlash(__d('attributes','The attribute option has been saved.'), 'flash/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The attribute option could not be saved. Please, try again.'), 'flash/warning');
+				$this->Session->setFlash(__d('attributes','The attribute option could not be saved. Please, try again.'), 'flash/warning');
 			}
 		}
 		$attributeTypes = $this->AttributeOption->AttributeType->find('list', array('fields' => array('id', 'code')
@@ -79,14 +79,14 @@ class AttributeOptionsController extends AttributesAppController {
 	 */
 	public function admin_edit($id = null) {
 		if (!$this->AttributeOption->exists($id)) {
-			throw new NotFoundException(__('Invalid attribute option'));
+			throw new NotFoundException(__d('attributes','Invalid attribute option'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->AttributeOption->save($this->request->data)) {
-				$this->Session->setFlash(__('The attribute option has been saved.'), 'flash/success');
+				$this->Session->setFlash(__d('attributes','The attribute option has been saved.'), 'flash/success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The attribute option could not be saved. Please, try again.'), 'flash/warning');
+				$this->Session->setFlash(__d('attributes','The attribute option could not be saved. Please, try again.'), 'flash/warning');
 			}
 		} else {
 			$options = array('conditions' => array('AttributeOption.' . $this->AttributeOption->primaryKey => $id));
@@ -106,13 +106,13 @@ class AttributeOptionsController extends AttributesAppController {
 	public function admin_delete($id = null) {
 		$this->AttributeOption->id = $id;
 		if (!$this->AttributeOption->exists()) {
-			throw new NotFoundException(__('Invalid attribute option'));
+			throw new NotFoundException(__d('attributes','Invalid attribute option'));
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->AttributeOption->delete()) {
-			$this->Session->setFlash(__('The attribute option has been deleted.'), 'flash/success');
+			$this->Session->setFlash(__d('attributes','The attribute option has been deleted.'), 'flash/success');
 		} else {
-			$this->Session->setFlash(__('The attribute option could not be deleted. Please, try again.'), 'flash/warning');
+			$this->Session->setFlash(__d('attributes','The attribute option could not be deleted. Please, try again.'), 'flash/warning');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

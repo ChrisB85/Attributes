@@ -1,7 +1,7 @@
 <div class="attributes_options">
-	<?php echo $this->Html->link('<i class="icon-plus-sign icon-white"></i>&nbsp;' . __('New Attribute Option'), array('action' => 'add', 'admin' => true), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
+	<?php echo $this->Html->link('<i class="icon-plus-sign icon-white"></i>&nbsp;' . __d('attributes','New Attribute Option'), array('action' => 'add', 'admin' => true), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
 	<div>
-		<h2><?php echo __('Attribute Options'); ?></h2>
+		<h2><?php echo __d('attributes', 'Attribute Options'); ?></h2>
 		<table cellpadding="0" cellspacing="0" class="table table-striped table-bordered table-condensed">
 			<tr>
 				<th><?php echo $this->Paginator->sort('id'); ?></th>

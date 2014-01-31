@@ -4,7 +4,7 @@
 	</div>
 	<?php echo $this->Form->create('AttributeOption'); ?>
 	<fieldset>
-		<legend><?php echo __('Edit Attribute Option'); ?></legend>
+		<legend><?php echo __d('attributes','Edit Attribute Option'); ?></legend>
 		<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('attribute_type_id');
