@@ -34,21 +34,21 @@ class AttributeComponent extends Component {
 				array('hasMany' => array('Attribute'))
 			);
 		}
-		
-		$conditions=array();
-		$conditions['Entity.alias']=$entity_alias;
-		
-		if(is_array($moment)){
-			foreach ($moment as $m){
-				
-				$conditions['OR'][]['AttributeType.moment']= $m;
+
+		$conditions = array();
+		$conditions['Entity.alias'] = $entity_alias;
+
+		if (is_array($moment)) {
+			foreach ($moment as $m) {
+
+				$conditions['OR'][]['AttributeType.moment'] = $m;
 			}
-		}else{
-			$conditions['AttributeType.moment']= $moment;
-		}				
-		
-		
-		
+		} else {
+			$conditions['AttributeType.moment'] = $moment;
+		}
+
+
+
 		$Typeattributes = $this->controller->AttributeType->find('all', array(
 			'order' => array('ordering' => 'asc'),
 			'fields' => array('AttributeType.*'),
@@ -173,9 +173,9 @@ class AttributeComponent extends Component {
 				'recursive' => 1,
 				)
 			);
-			
-			
-						
+
+
+
 
 			$attributes = $this->getTypes($entity_alias, $moment, true);
 			/* --- SET ATTRIBUTS ---- */
@@ -204,7 +204,7 @@ class AttributeComponent extends Component {
 					$attr['AttributeType'][$attributes_type['AttributeType']['id']] = trim($attr['AttributeType'][$attributes_type['AttributeType']['id']], ', ');
 				}
 			}
-			
+
 //			pr($attr);
 
 			return $attr;
@@ -225,8 +225,6 @@ class AttributeComponent extends Component {
 		$this->controller->loadModel('Attributes.Attribute');
 		$this->controller->loadModel('Attributes.Entity');
 
-
-
 		$id_entity = $this->controller->Entity->find('first', array(
 			'fields' => array('id'),
 			'conditions' => array('Entity.alias' => $entity_alias),
@@ -236,12 +234,14 @@ class AttributeComponent extends Component {
 
 		if (!empty($id_entity)) {
 
-			$this->controller->Attribute->deleteAll(array(
-				'Attribute.parent_entityid' => $parent_entityid,
-				'AttributeType.entity_id' => $id_entity['Entity']['id']
-				)
-			);
+
 			foreach ($attributes as $key => $value) {
+
+				$this->controller->Attribute->deleteAll(array(
+					'Attribute.parent_entityid' => $parent_entityid,
+					'Attribute.attribute_type_id' => $key
+					)
+				);
 
 				$is_multiple = $this->controller->AttributeType->find('first', array(
 					'recursive' => 0,

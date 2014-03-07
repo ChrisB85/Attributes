@@ -10,9 +10,9 @@ class AttributeHelper extends AppHelper {
 
 	public $helpers = array('Html', 'Session', 'Paginator', 'Js' => array('Jquery'), 'Form', 'Time');
 
-	public function inputs($attributes = null) {
+	public function inputs($attributes = null, $options = array()) {
 
-		$inputs = '';
+		$inputs = '';	
 		foreach ($attributes as $attribute) {
 
 			if (!$attribute['AttributeType']['use_option']) {
@@ -29,6 +29,7 @@ class AttributeHelper extends AppHelper {
 					$id = $option['id'];
 					$options[$id] = $option['code'];
 				}
+
 				switch ($attribute['AttributeType']['input_type']) {
 					case 1:
 						if ($attribute['AttributeType']['is_multiple']) {
@@ -45,7 +46,7 @@ class AttributeHelper extends AppHelper {
 						}
 						break;
 					case 2:
-						$inputs.= $this->Form->input('AttributeType.' . $attribute['AttributeType']['id'], array('label' => __($attribute['AttributeType']['code']), 'type' => 'select', 'options' => $options));
+						$inputs.= $this->Form->input('AttributeType.' . $attribute['AttributeType']['id'], array('label' => __($attribute['AttributeType']['code']), 'type' => 'select', 'options' => $options, 'div' => (empty($options['div'])) ? false : (bool) $options['label'], 'label' => (empty($options['label'])) ? false : (bool) $options['label']));
 						break;
 					case 3:
 						$inputs.= $this->Form->input('AttributeType.' . $attribute['AttributeType']['id'], array('legend' => __($attribute['AttributeType']['code']), 'type' => 'radio', 'options' => $options));
